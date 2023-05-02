@@ -1,0 +1,31 @@
+{
+  "name": "airsence_api",
+  "version": "1.0.0",
+  "description": "esto es el servidor que se conectara a la base de datos",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/app.js",
+    "dev": " nodemon ./src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/estebanquito24/airsence_api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/estebanquito24/airsence_api/issues"
+  },
+  "homepage": "https://github.com/estebanquito24/airsence_api#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mysql2": "^3.2.4",
+    "sequelize": "^6.31.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
