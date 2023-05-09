@@ -1,0 +1,12 @@
+
+GET http://localhost:3000/aqi/2
+
+###
+
+POST http://localhost:3000/aqi
+Content-Type: application/json
+
+{
+    "aqi": "2.5",
+    "comp": ""
+}
