@@ -1,8 +1,9 @@
 //get,post,put 
 const express = require("express") ;
 const cors = require("cors") ;
-const router = require("./routes/api");
+const router = require("./routes/rutas");
 const db = require("./db/database");
+const data = require("./routes/api");
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -11,18 +12,20 @@ const port = process.env.PORT || 3000;
     try {
         await db.authenticate()
         db.sync();
-        console.log("conectado a la base de datos")
+        console.log("Test #2 pass (bd connected)")
     }   catch (error) {
-        console.error('no es posible conectrase con la base de datos:', error);
+        console.error('Test #2 no es posible conectrase con la base de datos:', error);
     }
 })()
+
+
 
 //midleware
 app.use(express.json()); //convertir la info recibida en json
 app.use(cors());//habilita la app para recibir solicitudes
 
-app.use("/aqi",router)
+app.use("/",router)
 
 app.listen(port, ()=>{
-    console.log("server on port",port)
+    console.log("Test #1 pass (server on)",port)
 });

@@ -18,13 +18,4 @@ const airq = db.define("Airq",{
     timestamps: false
 })
 
-const contacts = db.define("Contacts",{
-    id: {type:Sequelize.INTEGER, primaryKey:true},
-    nombre: Sequelize.STRING,
-    telefono: Sequelize.STRING,
-    email: Sequelize.STRING,
-}, {
-    timestamps: false
-})
-
-module.exports = airq, contacts
+module.exports = airq

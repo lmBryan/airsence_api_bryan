@@ -1,69 +1,20 @@
-const airq = require('../Models/Model');
-const contacts = require('../Models/Model');
+const axios = require('axios');
+const db = require('../db/database');
 
-const router = require('express').Router();
+// Hacer la solicitud a la API
 
-//consulta a toda la tabla aqi
-router.get("/aqi", async (req,res)=> {
-    const Airq = await airq.findAll()
-    
-    res.json (Airq);
-});
+const API_KEY = 'f264a6f1f41af2ed5d7d17c8ecadffb8';
+const LAT = '18.451726';
+const LON = '-69.961452';
+const START = '1683750197';
+const END = '1683751197';
 
-//consulta por un id a tabla aqi
-router.get("/:id",(req,res)=> {
-    const { id } =req.params;
-    res.json (airq.find(item=>item.id==id));
-});
-
-//consulta a toda la tabla contactos
-router.get("/contacts", async (req,res)=> {
-    const Contacts = await contacts.findAll()
-    
-    res.json (Contacts);
-});
-
-//consulta por un id a tabla contactos
-router.get("/:id",(req,res)=> {
-    const { id } =req.params;
-    res.json (contacts.find(item=>item.id==id));
-});
-
-/*consulta por un id
-router.post("/",(req,res)=> {
-    const { aqi,comp } =req.body;
-
-    if (!aqi || !comp) {
-        return res.status(400).json({
-            error:"uno o mas campos vacios"
-        })
-    }
-
-    res.json({
-        aqi,
-        comp,
-    });
-});
-*/
-
-//mañon
-router.put('/:id', (req, res)=>{
-    const {id}=req.params;
-    const {aqi, co, no, no2, o3, so2, pm2_5, pm10, nh2, longitud, latitud} = req.body;
-    comsole.log(aqi, co, no, no2, o3, so2, pm2_5, pm10, nh2, longitud, latitud);
-    const index=Aqi.findIndex(item=>item.id==id)
-    Aqi[index].aqi=aqi;
-    Aqi[index].co=co;
-    Aqi[index].no=no;
-    Aqi[index].no2=no2;
-    Aqi[index].o3=o3;
-    Aqi[index].so2=so2;
-    Aqi[index].pm2_5=pm2_5;
-    Aqi[index].pm10=pm10;
-    Aqi[index].nh2=nh2;
-    Aqi[index].longitud=longitud;
-    Aqi[index].latitud=latitud;
-    req.json(Aqi);
-})
-
-module.exports = router;
+axios.get(`http://api.openweathermap.org/data/2.5/air_pollution/history?lat=${LAT}&lon=${LON}&start=${START}&end=${END}&appid=${API_KEY}`)
+  .then(response => {
+    const data = response.data;
+    // aquí procesas los datos de la respuesta de la API
+    module.exports = data;//data deberia ir a app.js pero como la api no funciona no lo he hecho
+  })
+  .catch(error => {
+    console.error('Error al obtener los datos de la API', error);
+  });

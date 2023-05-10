@@ -1,5 +1,5 @@
 
-GET http://localhost:3000/aqi/2
+GET http://api.openweathermap.org/data/2.5/air_pollution?lat={18.451726}&lon={-69.961452}&appid={f264a6f1f41af2ed5d7d17c8ecadffb8}
 
 ###
 
